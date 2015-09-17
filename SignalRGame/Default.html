@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>SignalR MoveShape</title>
+    <script src="Scripts/jquery-ui-1.11.4.min.js"></script>
+    <script src="Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="/signalr/hubs" type="text/javascript"></script>
+    <style type="text/css">
+        .container {
+            background-color: #99CCFF;
+            border: thick solid #808080;
+            padding: 20px;
+            margin: 20px;
+        }
+    </style>
+
+</head>
+<body>
+    <strong>Casual Games Repeat Exam</strong>
+    <p>S00131206</p>
+    <div class="container">
+        <input type="text" id="message" />
+        <input type="button" id="sendmessage" value="Send" />
+        <input type="hidden" id="displayname" />
+        <ul id="discussion"></ul>
+    </div>
+
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/jquery-ui-1.11.4.min.js"></script>
+    <script src="Scripts/jquery.signalR-2.2.0.js"></script>
+    <script src="/signalr/hubs"></script>
+    <script type="text/javascript">
+        $(function () {
+            var chat = $.connection.chatHub;
+            chat.client.broadcastMessage = function (name, message) {
+                var encodedName = $('<div />').text(name).html();
+                var encodedMsg = $('<div />').text(message).html();
+                $('#discussion').append('<li><strong>' + encodedName
+                    + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
+            };
+            $('#displayname').val(prompt('Enter your name:', ''));
+            $('#message').focus();
+            $.connection.hub.start().done(function () {
+                $('#sendmessage').click(function () {
+                    chat.server.send($('#displayname').val(), $('#message').val());
+                    $('#message').val('').focus();
+                });
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            var moveShapeHub = $.connection.moveShapeHub,
+                $shape = $("#shape"),
+                // Max 10 messages every second
+                messageFrequency = 10,
+                updateRate = 1000 / messageFrequency,
+                shapeModel = {
+                    left: 0,
+                    top: 0
+                },
+                moved = false;
+            moveShapeHub.client.updateShape = function (model) {
+                shapeModel = model;
+                $shape.animate(shapeModel, { duration: updateRate, queue: false });
+                //$shape.css({ left: model.left, top: model.top });
+            };
+            $.connection.hub.start().done(function () {
+                $shape.draggable({
+                    drag: function () {
+                        shapeModel = $shape.offset();
+                        moved = true;
+                    }
+                });
+                setInterval(updateServerModel, updateRate);
+            });
+            function updateServerModel() {
+                if (moved) {
+                    moveShapeHub.server.updateModel(shapeModel);
+                    moved = false;
+                }
+            }
+        });
+    </script>
+
+    <h1><span>Tic Tac Toe</span></h1>
+    <div>
+        <div id="register">
+            <strong>Your Name:</strong>
+            <input type="text" class="input" id="gameName" />
+            <br />
+            <input type="button" class="button" id="registerName" value="Register to play" />
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            var game = $.connection.game;
+
+            game.client.registerComplete = function (message) {
+                alert(message);
+            };
+            $("#registerName").click(function () {
+                game.server.registerClient($("#gameName").val());
+            });
+        });
+    </script>
+
+    <div id="shape" />
+</body>
+</html>
