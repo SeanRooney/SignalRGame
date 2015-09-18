@@ -8,3 +8,13 @@ C:\Users\Sean Rooney\Desktop\SignalRGame\MyClient\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Sean Rooney\Desktop\SignalRGame\MyClient\obj\Debug\MyClient.csprojResolveAssemblyReference.cache
 C:\Users\Sean Rooney\Desktop\SignalRGame\MyClient\obj\Debug\MyClient.exe
 C:\Users\Sean Rooney\Desktop\SignalRGame\MyClient\obj\Debug\MyClient.pdb
+C:\Users\ppowell\Documents\2015\Casual Games 2014\cgRepeats\SignalRGame\MyClient\bin\Debug\MyClient.exe.config
+C:\Users\ppowell\Documents\2015\Casual Games 2014\cgRepeats\SignalRGame\MyClient\obj\Debug\MyClient.exe
+C:\Users\ppowell\Documents\2015\Casual Games 2014\cgRepeats\SignalRGame\MyClient\obj\Debug\MyClient.pdb
+C:\Users\ppowell\Documents\2015\Casual Games 2014\cgRepeats\SignalRGame\MyClient\bin\Debug\MyClient.exe
+C:\Users\ppowell\Documents\2015\Casual Games 2014\cgRepeats\SignalRGame\MyClient\bin\Debug\MyClient.pdb
+C:\Users\ppowell\Documents\2015\Casual Games 2014\cgRepeats\SignalRGame\MyClient\bin\Debug\Microsoft.AspNet.SignalR.Client.dll
+C:\Users\ppowell\Documents\2015\Casual Games 2014\cgRepeats\SignalRGame\MyClient\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ppowell\Documents\2015\Casual Games 2014\cgRepeats\SignalRGame\MyClient\bin\Debug\Microsoft.AspNet.SignalR.Client.xml
+C:\Users\ppowell\Documents\2015\Casual Games 2014\cgRepeats\SignalRGame\MyClient\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ppowell\Documents\2015\Casual Games 2014\cgRepeats\SignalRGame\MyClient\obj\Debug\MyClient.csprojResolveAssemblyReference.cache
